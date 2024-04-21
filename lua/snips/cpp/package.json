@@ -1,0 +1,14 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "cpp",
+        "path": "./opencv.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./base.json"
+      }
+    ]
+  }
+}

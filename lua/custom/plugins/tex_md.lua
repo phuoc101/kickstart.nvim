@@ -1,4 +1,5 @@
 return {
+  -- NOTE: Texlab configuration
   {
     'f3fora/nvim-texlabconfig',
     ft = { 'tex', 'bib' },
@@ -68,6 +69,7 @@ return {
       }
     end,
   },
+  -- NOTE: Markdown preview
   {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
