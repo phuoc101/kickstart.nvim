@@ -26,6 +26,14 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        python = { 'black' },
+        json = { 'prettier' },
+        tex = { 'latexindent' },
+        cpp = { 'clang-format' },
+        xml = { 'xmlformat' },
+        markdown = { 'mdformat' },
+        bash = { 'beautysh' },
+        sh = { 'beautysh' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

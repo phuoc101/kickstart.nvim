@@ -3,6 +3,7 @@
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
+  lazy = false,
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -10,9 +11,6 @@ return {
     'MunifTanjim/nui.nvim',
   },
   cmd = 'Neotree',
-  keys = {
-    { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
-  },
   opts = {
     filesystem = {
       window = {
@@ -22,4 +20,7 @@ return {
       },
     },
   },
+  config = function()
+    vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Toggle [E]xplorer' })
+  end,
 }
