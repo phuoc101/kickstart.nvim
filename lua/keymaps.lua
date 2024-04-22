@@ -41,10 +41,10 @@ vim.keymap.set({ 'n' }, '<leader><leader>', function()
 end, { desc = 'Toggle diagnostic' })
 
 -- INSERT mode mappings
-vim.keymap.set({ 'i' }, '<C-h>', '<Left>', { desc = 'Move left' })
-vim.keymap.set({ 'i' }, '<C-j>', '<Down>', { desc = 'Move down' })
-vim.keymap.set({ 'i' }, '<C-k>', '<Up>', { desc = 'Move up' })
-vim.keymap.set({ 'i' }, '<C-l>', '<Right>', { desc = 'Move right' })
+vim.keymap.set({ 'i' }, '<C-h>', '<left>', { desc = 'Move left' })
+vim.keymap.set({ 'i' }, '<C-j>', '<down>', { desc = 'Move down' })
+vim.keymap.set({ 'i' }, '<C-k>', '<up>', { desc = 'Move up' })
+vim.keymap.set({ 'i' }, '<C-l>', '<right>', { desc = 'Move right' })
 
 -- VISUAL mode mappings
 vim.keymap.set({ 'v' }, 'p', 'P', { desc = 'sane paste option' })
@@ -72,5 +72,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
--- vim: ts=2 sts=2 sw=2 et
