@@ -30,7 +30,7 @@ return {
         json = { 'prettier' },
         tex = { 'latexindent' },
         cpp = { 'clang-format' },
-        xml = { 'xmlformat' },
+        xml = { 'xmllint' },
         markdown = { 'mdformat' },
         bash = { 'beautysh' },
         sh = { 'beautysh' },
