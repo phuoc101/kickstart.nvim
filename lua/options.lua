@@ -3,7 +3,7 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
+-- Make relative line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -57,4 +57,18 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- vim: ts=2 sts=2 sw=2 et
+vim.filetype.add {
+  desc = 'Set up custom filetypes',
+  extension = {
+    -- ROS filetypes
+    launch = 'xml',
+    sdf = 'xml',
+    jinja = 'xml',
+    xacro = 'xml',
+    rviz = 'yaml',
+    msg = 'conf',
+    srv = 'conf',
+    -- default tex flavor
+    tex = 'tex',
+  },
+}
