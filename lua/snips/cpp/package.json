@@ -8,6 +8,10 @@
       {
         "language": "cpp",
         "path": "./base.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./ros.json"
       }
     ]
   }
