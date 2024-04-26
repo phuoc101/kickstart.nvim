@@ -36,7 +36,7 @@ vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 200
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -53,6 +53,20 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
+
+-- Set tab space
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
+-- Wrapping long lines of text
+vim.opt.wrap = true
+vim.opt.signcolumn = 'auto'
+
+-- Set cmd height lower for more space
+vim.opt.cmdheight = 1
+
+-- Set global statusline
+vim.opt.laststatus = 3
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
