@@ -24,7 +24,12 @@ return {
           texlab = {
             auxDirectory = '.',
             build = {
-              args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
+              args = {
+                '-pdf',
+                '-interaction=nonstopmode',
+                '-synctex=1',
+                '%f',
+              },
               executable = 'latexmk',
               forwardSearchAfter = false,
               onSave = false,
@@ -62,8 +67,8 @@ return {
           },
         },
       }
-      vim.keymap.set('n', '<localleader>lb', '<cmd>TexlabBuild<cr>', { desc = 'Build [L]aTeX File' })
-      vim.keymap.set('n', '<localleader>ls', '<cmd>TexlabForward<cr>', { desc = 'Forward [S]earch [L]aTeX File' })
+      vim.keymap.set('n', '<localleader>ll', ':TexlabBuild<CR>', { desc = 'Build LaTeX File' })
+      vim.keymap.set('n', '<localleader>lv', ':TexlabForward<CR>', { desc = 'Forward Search LaTeX File' })
       require('which-key').register {
         ['<localleader>l'] = { name = '[L]atex', _ = 'which_key_ignore' },
       }
