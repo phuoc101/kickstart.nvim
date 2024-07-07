@@ -135,7 +135,8 @@ return {
         -- tsserver = {},
         --
         clangd = {},
-        pyright = {},
+        -- pyright = {},
+        jedi_language_server = {},
         texlab = {
           filetypes = { 'tex', 'bib' },
         },

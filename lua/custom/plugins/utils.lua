@@ -20,4 +20,8 @@ return {
       require('neogen').setup { snippet_engine = 'luasnip' }
     end,
   },
+  {
+    'norcalli/nvim-colorizer.lua',
+    event = 'VeryLazy',
+  },
 }
