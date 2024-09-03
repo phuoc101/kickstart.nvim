@@ -286,14 +286,34 @@ return {
         post_hook = nil, -- Function to run after the scrolling animation ends
         performance_mode = false, -- Disable "Performance Mode" on all buffers.
       }
-      local t = {}
-      -- Syntax: t[keys] = {function, {function arguments}}
-      t['<C-b>'] = { 'scroll', { '-vim.wo.scroll', 'true', '50' } }
-      t['<C-f>'] = { 'scroll', { 'vim.wo.scroll', 'true', '50' } }
-      t['<C-u>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '50' } }
-      t['<C-d>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '50' } }
-
-      require('neoscroll.config').set_mappings(t)
+      local neoscroll = require 'neoscroll'
+      local keymap = {
+        -- Use the "sine" easing function
+        ['<C-u>'] = function()
+          neoscroll.ctrl_u { duration = 250, easing = 'sine' }
+        end,
+        ['<C-d>'] = function()
+          neoscroll.ctrl_d { duration = 250, easing = 'sine' }
+        end,
+        -- Use the "circular" easing function
+        ['<C-b>'] = function()
+          neoscroll.ctrl_b { duration = 450, easing = 'circular' }
+        end,
+        ['<C-f>'] = function()
+          neoscroll.ctrl_f { duration = 450, easing = 'circular' }
+        end,
+        -- When no value is passed the `easing` option supplied in `setup()` is used
+        ['<C-y>'] = function()
+          neoscroll.scroll(-0.1, { move_cursor = false, duration = 100 })
+        end,
+        ['<C-e>'] = function()
+          neoscroll.scroll(0.1, { move_cursor = false, duration = 100 })
+        end,
+      }
+      local modes = { 'n', 'v', 'x' }
+      for key, func in pairs(keymap) do
+        vim.keymap.set(modes, key, func)
+      end
     end,
   },
 }
