@@ -189,7 +189,7 @@
   "Python logging": {
     "prefix": "logging",
     "body": [
-      "logging.basicConfig(format='[%(levelname)s]: %(message)s', level=logging.${1:level})"
+      "logging.basicConfig(format='[%(asctime)s %(filename)s][%(levelname)s]: %(message)s', level=logging.${1:level})"
     ],
     "description": "Python logging"
   },
