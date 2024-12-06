@@ -35,8 +35,6 @@ require('lazy').setup({
 
   require 'kickstart.plugins.cmp',
 
-  require 'kickstart.plugins.colorscheme',
-
   require 'kickstart.plugins.todo-comments',
 
   require 'kickstart.plugins.treesitter',

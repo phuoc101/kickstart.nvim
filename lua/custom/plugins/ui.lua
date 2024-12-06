@@ -83,36 +83,42 @@ return {
     'akinsho/bufferline.nvim',
     version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {
-      options = {
-        diagnostics = 'nvim_lsp',
-        always_show_bufferline = true,
-        indicator = {
-          icon = '▎', -- this should be omitted if indicator style is not 'icon'
-          style = 'icon',
-        },
-        separator_style = 'thin',
-        diagnostics_indicator = function(_, _, diag)
-          local ret = (diag.error and icons.diagnostics.error .. diag.error .. ' ' or '') .. (diag.warning and icons.diagnostics.warn .. diag.warning or '')
-          return vim.trim(ret)
-        end,
-        offsets = {
-          {
-            filetype = 'NvimTree',
-            text = 'NvimTree',
-            highlight = 'Directory',
-            text_align = 'left',
+    config = function()
+      local bufferline = require 'bufferline'
+      bufferline.setup {
+        options = {
+          style_preset = bufferline.style_preset.minimal,
+          themable = true,
+          numbers = 'ordinal',
+          offsets = {
+            {
+              filetype = 'NvimTree',
+              text = 'NvimTree',
+              highlight = 'Directory',
+              text_align = 'left',
+            },
+            diagnostics = 'nvim_lsp',
+            always_show_bufferline = true,
+            indicator = {
+              icon = '▎', -- this should be omitted if indicator style is not 'icon'
+              style = 'icon',
+            },
+            separator_style = 'thick',
+            diagnostics_indicator = function(_, _, diag)
+              local ret = (diag.error and icons.diagnostics.error .. diag.error .. ' ' or '') .. (diag.warning and icons.diagnostics.warn .. diag.warning or '')
+              return vim.trim(ret)
+            end,
           },
         },
-      },
-    },
+      }
+    end,
   },
   -- NOTE: Status line
   {
     'nvim-lualine/lualine.nvim',
     event = 'BufEnter',
     opts = function()
-      local theme_colors = require 'lualine.themes.carbonfox'
+      local theme_colors = require 'lualine.themes.nordfox'
       theme_colors.visual.a.bg = '#c678dd'
 
       local function get_lsp()
@@ -259,8 +265,7 @@ return {
                   [''] = theme_colors.visual.a.bg,
                   V = theme_colors.visual.a.bg,
                   c = theme_colors.command.a.bg,
-                }
-                return { fg = mode_color[vim.fn.mode()], bg = '#282828', gui = 'bold' }
+                } return { fg = mode_color[vim.fn.mode()], bg = '#282828', gui = 'bold' }
               end,
             },
           },

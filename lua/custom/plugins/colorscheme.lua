@@ -10,9 +10,8 @@ return {
     'EdenEast/nightfox.nvim',
     lazy = true,
     config = function()
-      -- local colors = require("nightfox.lib.color")
-      -- local carbonfox = require("nightfox.palette").load("carbonfox").generate_spec(0)
       local carbon_palette = require('nightfox.palette').load 'carbonfox'
+      local nord_palette = require('nightfox.palette').load 'nordfox'
       local dayfox_palette = require('nightfox.palette').load 'dayfox'
       local Color = require 'nightfox.lib.color'
 
@@ -48,6 +47,16 @@ return {
             VertSplit = { fg = Color.from_hex(carbon_palette.fg3) },
             MatchParen = { style = 'underline,bold' },
           },
+          nordfox = {
+            CursorLine = { bg = Color.from_hex(nord_palette.bg2) },
+            Visual = {
+              bg = Color.from_hex(nord_palette.fg3),
+              fg = Color.from_hex(nord_palette.bg0),
+              style = 'bold',
+            },
+            VertSplit = { fg = Color.from_hex(nord_palette.fg3) },
+            MatchParen = { style = 'underline,bold' },
+          },
           dayfox = {
             CursorLine = { bg = Color.from_hex(dayfox_palette.bg0) },
             Visual = {
@@ -64,7 +73,7 @@ return {
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
-      vim.cmd.colorscheme 'carbonfox'
+      vim.cmd.colorscheme 'nordfox'
     end,
   },
 }
