@@ -70,6 +70,13 @@
     ],
     "description": "ROS service client wrapped with try/except and prior wait for service."
   },
+  "ROS 1 get param": {
+    "prefix": "ros1:param",
+    "body": [
+      "${1:default_param} = rospy.get_param('${2:default_param}', '${3:default_value}')"
+    ],
+    "description": "ROS 1 get param"
+  },
   "setup.py for ROS 1": {
     "prefix": "ros1:setup.py",
     "body": [
