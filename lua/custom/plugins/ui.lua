@@ -120,11 +120,12 @@ return {
     opts = function()
       local theme_colors = require 'lualine.themes.nordfox'
       theme_colors.visual.a.bg = '#c678dd'
+      theme_colors.normal.c.bg = '#2e3440'
 
       local function get_lsp()
         local msg = 'No Active Lsp'
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-        local clients = vim.lsp.get_active_clients()
+        local clients = vim.lsp.get_clients()
         if next(clients) == nil then
           return msg
         end
@@ -139,11 +140,11 @@ return {
 
       return {
         options = {
-          theme = 'auto',
+          theme = theme_colors,
           globalstatus = true,
           disabled_filetypes = { statusline = { 'dashboard', 'lazy', 'alpha' } },
           component_separators = { left = '', right = '' },
-          section_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
         },
         sections = {
           lualine_a = {
@@ -160,7 +161,7 @@ return {
                 return icons.symbol .. ' ' .. curr_mode[vim.fn.mode()]
               end,
               padding = { left = 1, right = 1 },
-              separator = { left = '', right = '' },
+              separator = { left = '', right = '' },
               color = function()
                 -- auto change color according to neovims mode
                 local mode_color = {
@@ -171,7 +172,7 @@ return {
                   V = theme_colors.visual.a.bg,
                   c = theme_colors.command.a.bg,
                 }
-                return { fg = mode_color[vim.fn.mode()], bg = '#282828', gui = 'bold' }
+                return { fg = mode_color[vim.fn.mode()], bg = theme_colors.normal.c.bg, gui = 'bold' }
               end,
             },
           },
@@ -183,6 +184,7 @@ return {
               icon = { align = 'right' }, -- Display filetype icon on the right hand side
               separator = '',
               padding = { left = 1, right = 0 },
+              color = { bg = theme_colors.normal.c.bg },
             },
             {
               'filename',
@@ -205,26 +207,20 @@ return {
                 newfile = icons.file.newfile, -- Text to show for newly created file before first write
               },
               separator = { right = '' },
+              color = { bg = theme_colors.normal.c.bg },
             },
-            -- {
-            --   require("noice").api.status.mode.get,
-            --   cond = require("noice").api.status.mode.has,
-            --   color = { fg = "#ff9e64" },
-            -- },
           },
-          lualine_c = {
-            -- Lsp server name .
-          },
+          lualine_c = {},
           lualine_x = {
-            -- stylua: ignore
             {
-              "diagnostics",
+              'diagnostics',
               symbols = {
                 error = icons.diagnostics.error,
                 warn = icons.diagnostics.warn,
                 info = icons.diagnostics.info,
                 hint = icons.diagnostics.hint,
               },
+              color = { bg = theme_colors.normal.c.bg },
             },
             {
               'diff',
@@ -233,18 +229,20 @@ return {
                 modified = icons.git.modified,
                 removed = icons.git.removed,
               },
+              color = { bg = theme_colors.normal.c.bg },
             },
-            { 'branch' },
+            { 'branch', color = { bg = theme_colors.normal.c.bg } },
           },
           lualine_y = {
-            { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
-            { 'location', padding = { left = 0, right = 1 } },
-            { 'searchcount', color = { fg = '#ff9e64' } },
+            { 'progress', separator = ' ', padding = { left = 1, right = 0 }, color = { bg = theme_colors.normal.c.bg } },
+            { 'location', padding = { left = 0, right = 1 }, color = { bg = theme_colors.normal.c.bg } },
+            { 'searchcount', color = { fg = '#ff9e64', bg = theme_colors.normal.c.bg } },
           },
           lualine_z = {
             {
               get_lsp,
               icon = ' LSP:',
+              color = { bg = theme_colors.normal.c.bg, fg = '#b48ead', gui = 'bold' },
             },
             {
               'fileformat',
@@ -255,7 +253,7 @@ return {
               },
               fmt = string.upper,
               icons_enabled = true,
-              separator = { left = '', right = '' },
+              separator = { left = '', right = '' },
               color = function()
                 -- auto change color according to neovims mode
                 local mode_color = {
@@ -265,7 +263,8 @@ return {
                   [''] = theme_colors.visual.a.bg,
                   V = theme_colors.visual.a.bg,
                   c = theme_colors.command.a.bg,
-                } return { fg = mode_color[vim.fn.mode()], bg = '#282828', gui = 'bold' }
+                }
+                return { fg = mode_color[vim.fn.mode()], bg = theme_colors.normal.c.bg, gui = 'bold' }
               end,
             },
           },
