@@ -246,7 +246,7 @@ return {
           end
           -- Commands
           if type == ':' then
-            return {}
+            return { 'cmdline' }
           end
           return {}
         end,
