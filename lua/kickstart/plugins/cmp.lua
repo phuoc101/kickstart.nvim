@@ -214,7 +214,7 @@ return {
         preset = 'default',
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-e>'] = { 'hide' },
-        ['<CR>'] = { 'accept', 'fallback' },
+        ['<S-CR>'] = { 'accept', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
