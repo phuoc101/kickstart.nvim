@@ -169,26 +169,27 @@ return {
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
-        build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
-        },
+        version = 'v2.*',
+        -- build = (function()
+        --   -- Build Step is needed for regex support in snippets.
+        --   -- This step is not supported in many windows environments.
+        --   -- Remove the below condition to re-enable on windows.
+        --   if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+        --     return
+        --   end
+        --   return 'make install_jsregexp'
+        -- end)(),
+        -- dependencies = {
+        --   -- `friendly-snippets` contains a variety of premade snippets.
+        --   --    See the README about individual language/framework/plugin snippets:
+        --   --    https://github.com/rafamadriz/friendly-snippets
+        --   -- {
+        --   --   'rafamadriz/friendly-snippets',
+        --   --   config = function()
+        --   --     require('luasnip.loaders.from_vscode').lazy_load()
+        --   --   end,
+        --   -- },
+        -- },
       },
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
@@ -214,7 +215,7 @@ return {
         preset = 'default',
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-e>'] = { 'hide' },
-        ['<S-CR>'] = { 'accept', 'fallback' },
+        ['<C-y>'] = { 'select_and_accept', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
@@ -233,6 +234,20 @@ return {
         nerd_font_variant = 'normal',
       },
 
+      snippets = {
+        expand = function(snippet)
+          require('luasnip').lsp_expand(snippet)
+        end,
+        active = function(filter)
+          if filter and filter.direction then
+            return require('luasnip').jumpable(filter.direction)
+          end
+          return require('luasnip').in_snippet()
+        end,
+        jump = function(direction)
+          require('luasnip').jump(direction)
+        end,
+      },
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
