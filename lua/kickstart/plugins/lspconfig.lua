@@ -137,7 +137,14 @@ return {
         clangd = {},
         -- pyright = {},
         -- jedi_language_server = {},
-        basedpyright = {},
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              typeCheckingMode = 'standard',
+              logLevel = 'error',
+            },
+          },
+        },
         texlab = {
           filetypes = { 'tex', 'bib' },
           settings = {
