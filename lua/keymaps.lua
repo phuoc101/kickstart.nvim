@@ -72,3 +72,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex', 'bib' },
+  desc = 'Texlab keybindings',
+  callback = function()
+    vim.keymap.set('n', '<localleader>ll', ':TexlabBuild<CR>', { desc = 'Build LaTeX File' })
+    vim.keymap.set('n', '<localleader>lv', ':TexlabForward<CR>', { desc = 'Forward Search LaTeX File' })
+    require('which-key').add {
+      '<localleader>l',
+      group = '[L]atex',
+    }
+  end,
+})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown' },
+  desc = 'Markdown keybindings',
+  callback = function()
+    vim.keymap.set('n', '<localleader>mp', ':MarkdownPreview<CR>', { desc = 'Preview Markdown File' })
+    require('which-key').add {
+      '<localleader>m',
+      group = '[M]arkdown',
+    }
+  end,
+})

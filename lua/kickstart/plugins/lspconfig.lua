@@ -140,6 +140,39 @@ return {
         basedpyright = {},
         texlab = {
           filetypes = { 'tex', 'bib' },
+          settings = {
+            texlab = {
+              build = {
+                onSave = true,
+              },
+              forwardSearch = {
+                executable = 'sioyek',
+                args = {
+                  '--reuse-window',
+                  '--execute-command',
+                  'toggle_synctex',
+                  '--inverse-search',
+                  string.format(
+                    'bash -c %s',
+                    string.format(
+                      '"nvim --headless --noplugin --server %s --remote "%s" && nvim --headless --noplugin --server %s --remote-send "gg%sjk0%slh""',
+                      vim.v.servername,
+                      '%%1',
+                      vim.v.servername,
+                      '%%2',
+                      '%%3'
+                    )
+                  ),
+                  '--forward-search-file',
+                  '%f',
+                  '--forward-search-line',
+                  '%l',
+                  '--forward-search-column',
+                  '%p',
+                },
+              },
+            },
+          },
         },
         marksman = {},
         bashls = {},
@@ -153,7 +186,7 @@ return {
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
