@@ -123,7 +123,7 @@ return {
       theme_colors.normal.c.bg = '#2e3440'
 
       local function get_lsp()
-        local msg = 'No Active Lsp'
+        local msg = ''
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_clients()
         if next(clients) == nil then
@@ -132,10 +132,42 @@ return {
         for _, client in ipairs(clients) do
           local filetypes = client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
+            return ' ' .. client.name
           end
         end
         return msg
+      end
+
+      local function get_formatter()
+        -- Check if 'conform' is available
+        local status, conform = pcall(require, 'conform')
+        if not status then
+          return 'Conform not installed'
+        end
+
+        local lsp_format = require 'conform.lsp_format'
+
+        -- Get formatters for the current buffer
+        local formatters = conform.list_formatters_for_buffer()
+        if formatters and #formatters > 0 then
+          local formatterNames = {}
+
+          for _, formatter in ipairs(formatters) do
+            table.insert(formatterNames, formatter)
+          end
+
+          return '󰷈 ' .. table.concat(formatterNames, ' ')
+        end
+
+        -- Check if there's an LSP formatter
+        local bufnr = vim.api.nvim_get_current_buf()
+        local lsp_clients = lsp_format.get_format_clients { bufnr = bufnr }
+
+        if not vim.tbl_isempty(lsp_clients) then
+          return '󰷈 LSP Formatter'
+        end
+
+        return ''
       end
 
       return {
@@ -206,7 +238,6 @@ return {
                 unnamed = icons.file.unnamed, -- Text to show for unnamed buffers.
                 newfile = icons.file.newfile, -- Text to show for newly created file before first write
               },
-              separator = { right = '' },
               color = { bg = theme_colors.normal.c.bg },
             },
           },
@@ -241,7 +272,10 @@ return {
           lualine_z = {
             {
               get_lsp,
-              icon = ' LSP:',
+              color = { bg = theme_colors.normal.c.bg, fg = '#b48ead', gui = 'bold' },
+            },
+            {
+              get_formatter,
               color = { bg = theme_colors.normal.c.bg, fg = '#b48ead', gui = 'bold' },
             },
             {
