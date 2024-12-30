@@ -29,7 +29,7 @@ return {
           -- When true, will prefetch the completion items when entering insert mode
           prefetch_on_insert = false,
           -- When false, will not show the completion window automatically when in a snippet
-          show_in_snippet = false,
+          show_in_snippet = true,
           -- When true, will show the completion window after typing a character that matches the `keyword.regex`
           show_on_keyword = true,
           -- When true, will show the completion window after typing a trigger character
