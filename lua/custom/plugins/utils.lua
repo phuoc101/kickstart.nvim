@@ -1,12 +1,28 @@
 return {
   {
-    'junegunn/fzf',
-    event = 'VeryLazy',
-    build = ' fzf#install() ',
+    'nvim-pack/nvim-spectre',
     config = function()
-      vim.keymap.set('n', '<leader>sf', ':Files<CR>', { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>sg', ':Rg<CR>', { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+        desc = 'Toggle Spectre',
+      })
+      vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+        desc = 'Search current word',
+      })
+      vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+        desc = 'Search current word',
+      })
+      vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+        desc = 'Search on current file',
+      })
     end,
+  },
+  {
+    'ibhagwan/fzf-lua',
+    -- optional for icon support
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- or if using mini.icons/mini.nvim
+    -- dependencies = { "echasnovski/mini.icons" },
+    opts = {},
   },
   {
     'junegunn/fzf.vim',
