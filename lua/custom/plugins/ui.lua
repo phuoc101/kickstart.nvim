@@ -313,7 +313,7 @@ return {
     config = function()
       require('mini.animate').setup {
         cursor = {
-          enable = true,
+          enable = false,
         },
         scroll = {
           enable = true,
@@ -326,14 +326,5 @@ return {
         close = { enable = false },
       }
     end,
-  },
-  {
-    'arnamak/stay-centered.nvim',
-    lazy = false,
-    opts = {
-      enabled = true,
-      -- allows scrolling to move the cursor without centering, default recommended
-      allow_scroll_move = false,
-    },
   },
 }
