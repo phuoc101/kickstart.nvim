@@ -28,8 +28,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = { use_diagnostic_signs = true },
     config = function()
-      require('trouble').setup {
-      }
+      require('trouble').setup {}
     end,
   },
   -- NOTE: jk to escape
@@ -71,5 +70,8 @@ return {
         },
       }
     end,
+  },
+  {
+    'mbbill/undotree',
   },
 }
