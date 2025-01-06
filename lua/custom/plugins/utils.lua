@@ -18,15 +18,8 @@ return {
   },
   {
     'ibhagwan/fzf-lua',
-    -- optional for icon support
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    -- or if using mini.icons/mini.nvim
-    -- dependencies = { "echasnovski/mini.icons" },
     opts = {},
-  },
-  {
-    'junegunn/fzf.vim',
-    event = 'VeryLazy',
   },
   {
     'danymat/neogen',
@@ -47,7 +40,6 @@ return {
   },
   {
     'norcalli/nvim-colorizer.lua',
-    -- event = 'VeryLazy',
     config = function()
       require('colorizer').setup()
     end,
