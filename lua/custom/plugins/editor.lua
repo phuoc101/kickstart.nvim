@@ -10,24 +10,17 @@ return {
   },
   -- NOTE: Movements
   {
-    'jinh0/eyeliner.nvim',
-    config = function()
-      require('eyeliner').setup {
-        highlight_on_key = true,
-        dim = true,
-      }
-    end,
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    ---@type Flash.Config
+    opts = {},
+  -- stylua: ignore
+  keys = {
+    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
   },
-  {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      local hop = require 'hop'
-      -- you can configure Hop the way you like here; see :h hop-config
-      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
-
-      vim.keymap.set({ 'n', 'v' }, 's', '<cmd>HopChar1<CR>', { remap = true })
-    end,
   },
   -- NOTE: Diagnostic
   {
