@@ -69,6 +69,20 @@ return {
     end,
   },
   {
-    'mbbill/undotree',
+    'jiaoshijie/undotree',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = function()
+      local undotree = require 'undotree'
+      undotree.setup {
+        float_diff = false, -- using float window previews diff, set this `true` will disable layout option
+        layout = 'left_bottom', -- "left_bottom", "left_left_bottom"
+        position = 'left', -- "right", "bottom"
+        ignore_filetype = { 'undotree', 'undotreeDiff', 'qf', 'TelescopePrompt', 'spectre_panel', 'tsplayground' },
+        window = {
+          winblend = 30,
+        },
+      }
+      vim.keymap.set('n', '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", { desc = 'Undotree' })
+    end,
   },
 }
