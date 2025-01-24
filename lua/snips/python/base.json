@@ -238,9 +238,9 @@
       "stdout_handler.setLevel(logging.${2:stdout_log_level})",
       "stdout_handler.setFormatter(${3:LogFormatterClass}(fmt))",
       "# File handler for logging to a file",
-      "today = datetime.date.today()",
+      "now = datetime.datetime.now()",
       "file_handler = logging.FileHandler(",
-      "    f\"./{LOG_PATH}/my_app_{today.strftime('%Y_%m_%d')}.log\"",
+      "    f\"./{LOG_PATH}/my_app_{now.strftime('%Y_%m_%d_%H_%M_%S')}.log\"",
       ")",
       "file_handler.setLevel(logging.${4:file_log_level})",
       "file_handler.setFormatter(logging.Formatter(fmt))"
