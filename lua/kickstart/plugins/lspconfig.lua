@@ -153,28 +153,12 @@ return {
                 onSave = true,
               },
               forwardSearch = {
-                executable = 'sioyek',
+                executable = 'zathura',
                 args = {
-                  '--reuse-window',
-                  '--execute-command',
-                  'toggle_synctex',
-                  '--inverse-search',
-                  string.format(
-                    'bash -c %s',
-                    string.format(
-                      '"nvim --headless --noplugin --server %s --remote "%s" && nvim --headless --noplugin --server %s --remote-send "gg%sjk0%slh""',
-                      vim.v.servername,
-                      '%%1',
-                      vim.v.servername,
-                      '%%2',
-                      '%%3'
-                    )
-                  ),
-                  '--forward-search-file',
-                  '%f',
-                  '--forward-search-line',
-                  '%l',
-                  '--forward-search-column',
+                  '--synctex-editor-command',
+                  [[nvim-texlabconfig -file '%%%{input}' -line %%%{line} -server ]] .. vim.v.servername,
+                  '--synctex-forward',
+                  '%l:1:%f',
                   '%p',
                 },
               },
