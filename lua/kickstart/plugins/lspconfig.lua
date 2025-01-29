@@ -145,26 +145,6 @@ return {
             },
           },
         },
-        texlab = {
-          filetypes = { 'tex', 'bib' },
-          settings = {
-            texlab = {
-              build = {
-                onSave = true,
-              },
-              forwardSearch = {
-                executable = 'zathura',
-                args = {
-                  '--synctex-editor-command',
-                  [[nvim-texlabconfig -file '%%%{input}' -line %%%{line} -server ]] .. vim.v.servername,
-                  '--synctex-forward',
-                  '%l:1:%f',
-                  '%p',
-                },
-              },
-            },
-          },
-        },
         marksman = {},
         bashls = {},
         lua_ls = {
