@@ -9,15 +9,26 @@ return {
     end,
   },
   -- NOTE: Movements
+  -- NOTE: Movements
   {
-    'folke/flash.nvim',
-    event = 'VeryLazy',
-    ---@type Flash.Config
-    opts = {},
-  -- stylua: ignore
-  keys = {
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    'jinh0/eyeliner.nvim',
+    config = function()
+      require('eyeliner').setup {
+        highlight_on_key = true,
+        dim = true,
+      }
+    end,
   },
+  {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      local hop = require 'hop'
+      -- you can configure Hop the way you like here; see :h hop-config
+      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
+
+      vim.keymap.set({ 'n', 'v' }, 's', '<cmd>HopChar1<CR>', { remap = true })
+    end,
   },
   -- NOTE: Diagnostic
   {
@@ -79,10 +90,15 @@ return {
         position = 'left', -- "right", "bottom"
         ignore_filetype = { 'undotree', 'undotreeDiff', 'qf', 'TelescopePrompt', 'spectre_panel', 'tsplayground' },
         window = {
-          winblend = 30,
+          winblend = k0,
         },
       }
       vim.keymap.set('n', '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", { desc = 'Undotree' })
     end,
+  },
+  {
+    'filipdutescu/renamer.nvim',
+    branch = 'master',
+    requires = { { 'nvim-lua/plenary.nvim' } },
   },
 }

@@ -30,8 +30,8 @@ vim.keymap.set({ 'n' }, '<leader>bd', '<cmd>bdelete!<cr>', { desc = '[B]uffer [D
 vim.keymap.set({ 'n' }, 'L', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 vim.keymap.set({ 'n' }, 'H', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 -- Rename symbol
--- vim.keymap.set({ 'n' }, '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'Rename symbol' })
-vim.keymap.set({ 'n' }, '<F2>', '<cmd>Lspsaga rename<cr>', { desc = 'Rename symbol' })
+vim.keymap.set({ 'n' }, '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'Rename symbol' })
+-- vim.keymap.set({ 'n' }, '<F2>', '<cmd>lua require('renamer').rename()<cr>', { desc = 'Rename symbol' })
 -- Toggle diagnostic
 vim.keymap.set({ 'n' }, '<leader><leader>', function()
   if not vim.diagnostic.config().virtual_text then
