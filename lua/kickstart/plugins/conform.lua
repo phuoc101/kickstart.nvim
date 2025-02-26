@@ -27,7 +27,7 @@ return {
       -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'black' },
+        python = { 'black', 'docformatter' },
         json = { 'prettier' },
         tex = { 'latexindent' },
         cpp = { 'clang-format' },
@@ -36,12 +36,8 @@ return {
         bash = { 'beautysh' },
         sh = { 'beautysh' },
         toml = { 'taplo' },
-        yaml = { 'prettier' }
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        yaml = { 'prettier' },
       },
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et
