@@ -48,11 +48,11 @@ return {
               -- },
               executable = 'sioyek',
               args = {
-                '--new-window',
+                '--reuse-window',
                 '--execute-command',
                 'toggle_synctex', -- Open Sioyek in synctex mode.
                 '--inverse-search',
-                [[nvim-texlabconfig -file %%%1 -line %%%2 -server ]] .. vim.v.servername,
+                'nvim-texlabconfig -file "%%%1" -line "%%%2" -server ' .. vim.v.servername,
                 '--forward-search-file',
                 '%f',
                 '--forward-search-line',
