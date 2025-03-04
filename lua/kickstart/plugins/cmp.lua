@@ -55,18 +55,27 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         -- optionally disable cmdline completions
-        cmdline = function()
-          local type = vim.fn.getcmdtype()
-          -- Search forward and backward
-          if type == '/' or type == '?' then
-            return { 'buffer' }
-          end
-          -- Commands
-          if type == ':' then
-            return { 'cmdline' }
-          end
-          return {}
-        end,
+        -- cmdline = function()
+        --   local type = vim.fn.getcmdtype()
+        --   -- Search forward and backward
+        --   if type == '/' or type == '?' then
+        --     return { 'buffer' }
+        --   end
+        --   -- Commands
+        --   if type == ':' then
+        --     return { 'cmdline' }
+        --   end
+        --   return {}
+        -- end,
+      },
+      cmdline = {
+        keymap = {
+          -- recommended, as the default keymap will only show and select the next item
+          ['<Tab>'] = { 'show', 'accept' },
+          ['<C-k>'] = { 'select_prev', 'fallback' },
+          ['<C-j>'] = { 'select_next', 'fallback' },
+        },
+        completion = { menu = { auto_show = true } },
       },
 
       -- experimental signature help support
