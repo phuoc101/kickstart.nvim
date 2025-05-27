@@ -78,8 +78,8 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'tex', 'bib' },
   desc = 'Texlab keybindings',
   callback = function()
-    vim.keymap.set('n', '<localleader>ll', ':TexlabBuild<CR>', { desc = 'Build LaTeX File' })
-    vim.keymap.set('n', '<localleader>lv', ':TexlabForward<CR>', { desc = 'Forward Search LaTeX File' })
+    vim.keymap.set('n', '<localleader>ll', ':VimtexCompile<CR>', { desc = 'Build LaTeX File' })
+    vim.keymap.set('n', '<localleader>lv', ':VimtexView<CR>', { desc = 'Forward Search LaTeX File' })
     require('which-key').add {
       '<localleader>l',
       group = '[L]atex',
