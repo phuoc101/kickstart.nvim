@@ -10,6 +10,7 @@ return {
       vim.g.vimtex_view_method = 'sioyek'
     end,
   },
+  -- NOTE: Markdown preview
   {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
