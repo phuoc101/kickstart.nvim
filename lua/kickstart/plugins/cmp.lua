@@ -1,6 +1,7 @@
 return {
   {
     'saghen/blink.cmp',
+    version = '1.*',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -12,8 +13,8 @@ return {
       'hrsh7th/cmp-path',
       'onsails/lspkind.nvim',
     },
-    -- use a release tag to download pre-built binaries
-    version = 'v0.*',
+    -- -- use a release tag to download pre-built binaries
+    -- version = 'v0.*',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
