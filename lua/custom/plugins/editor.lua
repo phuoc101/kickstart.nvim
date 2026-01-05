@@ -9,7 +9,6 @@ return {
     end,
   },
   -- NOTE: Movements
-  -- NOTE: Movements
   {
     'jinh0/eyeliner.nvim',
     config = function()
@@ -20,14 +19,15 @@ return {
     end,
   },
   {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      local hop = require 'hop'
-      -- you can configure Hop the way you like here; see :h hop-config
-      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
-
-      vim.keymap.set({ 'n', 'v' }, 's', '<cmd>HopChar1<CR>', { remap = true })
+    'ggandor/leap.nvim',
+    enabled = true,
+    keys = {
+      { 's', mode = { 'n', 'x', 'o' }, desc = 'Leap to' },
+      { 'S', mode = { 'n', 'x', 'o' }, desc = 'Leap from Windows' },
+    },
+    config = function(_, opts)
+      vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+      vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
     end,
   },
   -- NOTE: Diagnostic
