@@ -23,7 +23,6 @@ return {
     enabled = true,
     keys = {
       { 's', mode = { 'n', 'x', 'o' }, desc = 'Leap to' },
-      { 'S', mode = { 'n', 'x', 'o' }, desc = 'Leap from Windows' },
     },
     config = function(_, opts)
       vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
