@@ -94,9 +94,4 @@ return {
       vim.keymap.set('n', '<leader>u', "<cmd>lua require('undotree').toggle()<cr>", { desc = 'Undotree' })
     end,
   },
-  {
-    'filipdutescu/renamer.nvim',
-    branch = 'master',
-    requires = { { 'nvim-lua/plenary.nvim' } },
-  },
 }
