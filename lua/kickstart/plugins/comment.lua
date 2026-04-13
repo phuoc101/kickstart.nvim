@@ -1,16 +1,22 @@
 return {
   {
-    'numToStr/Comment.nvim',
+    'nvim-mini/mini.comment',
+    version = '*',
+
     config = function()
-      vim.keymap.set('n', '<leader>/', function()
-        require('Comment.api').toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
-      end, { desc = 'Toggle comment for selection' })
-      vim.keymap.set(
-        'v',
-        '<leader>/',
-        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
-        { desc = 'Toggle comment for selection' }
-      )
+      require('mini.comment').setup {
+        options = {
+          ignore_blank_line = false,
+          start_of_line = false,
+          pad_comment_parts = true,
+        },
+        mappings = {
+          comment = '<leader>/',
+          comment_line = '<leader>/',
+          comment_visual = '<leader>/',
+          textobject = '<leader>/',
+        },
+      }
     end,
   },
 }
