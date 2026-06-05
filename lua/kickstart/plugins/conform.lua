@@ -1,43 +1,38 @@
-return {
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    lazy = false,
-    keys = {
-      {
-        '<leader>f',
-        function()
-          require('conform').format { async = true, lsp_fallback = true }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
-      },
-    },
-    opts = {
-      notify_on_error = false,
-      format_on_save = nil,
-      -- format_on_save = function(bufnr)
-      --   -- Disable "format_on_save lsp_fallback" for languages that don't
-      --   -- have a well standardized coding style. You can add additional
-      --   -- languages here or re-enable it for the disabled ones.
-      --   local disable_filetypes = { c = true, cpp = true }
-      --   return {
-      --     timeout_ms = 500,
-      --     lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-      --   }
-      -- end,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        python = { 'black', 'docformatter' },
-        json = { 'prettier' },
-        tex = { 'latexindent' },
-        cpp = { 'clang-format' },
-        xml = { 'xmllint' },
-        markdown = { 'mdformat' },
-        bash = { 'beautysh' },
-        sh = { 'beautysh' },
-        toml = { 'taplo' },
-        yaml = { 'prettier' },
-      },
-    },
+local function gh(repo) return 'https://github.com/' .. repo end
+
+-- [[ Formatting ]]
+vim.pack.add { gh 'stevearc/conform.nvim' }
+require('conform').setup {
+  notify_on_error = false,
+  format_on_save = function(bufnr)
+    -- You can specify filetypes to autoformat on save here:
+    local enabled_filetypes = {
+      lua = true,
+      python = true,
+    }
+    if enabled_filetypes[vim.bo[bufnr].filetype] then
+      return { timeout_ms = 500 }
+    else
+      return nil
+    end
+  end,
+  default_format_opts = {
+    lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
+  },
+  -- You can also specify external formatters in here.
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    python = { 'black', 'docformatter' },
+    json = { 'prettier' },
+    tex = { 'latexindent' },
+    cpp = { 'clang-format' },
+    xml = { 'xmllint' },
+    markdown = { 'markdownlint', 'markdownlint-cli2' },
+    bash = { 'beautysh' },
+    sh = { 'beautysh' },
+    toml = { 'taplo' },
+    yaml = { 'prettier' },
   },
 }
+
+vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
